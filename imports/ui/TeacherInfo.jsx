@@ -9,7 +9,7 @@ export default class TeacherInfo extends Component {
                         <img src="/xavier.png" className="teacher-profile-img inline-img-responsive" />
                         <h6><a className="caption" href="http://marvel.com/universe/Professor_X">&copy; Marvel</a></h6>
                         <h2>Charles Francis Xavier (Professor X) </h2>
-                        <img src={"/"+this.props.teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img " id="stars-img" name="stars-img"/>
+                        <img src={"/"+this.props.teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img "/>
                         <hr/>
                         <div className="container">
                             <h4>Mutant rights activist, geneticist, teacher, formerly adventurer, soldier</h4>

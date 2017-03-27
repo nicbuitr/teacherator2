@@ -75,7 +75,6 @@ export default class Teacher extends Component {
         }
         criterias[name.split("_")[1]-1].selection = stateValue;
       }
-      console.log(document.getElementById("stars-img").src);
       document.getElementById("stars-img").src ="/"+starCount+"_star.png";
       this.setState(state);
     }
@@ -101,8 +100,8 @@ export default class Teacher extends Component {
           <div className="jumbotron">
             <div className="row text-center">
               <h2>Add Review By Choosing The Options That Apply</h2>
+              <hr/>
             </div>
-            <hr/>
             <form className="form" onSubmit={this.addReview.bind(this)}>
               {rows}               
               <div className="form-group">
@@ -110,9 +109,9 @@ export default class Teacher extends Component {
                 <textarea className="form-control" rows="5" id="comments" name="comments" value={this.state.comments} onChange={this.handleInputChange.bind(this)} placeholder="Write here any suggestion, compliment, rant or comment you may have..."></textarea>                    
               </div>
               <hr/>
-              <div className="text-center">
-                <img src="/0_star.png" className="inline-img-responsive rating-stars-img " id="stars-img" name="stars-img"/>
-              </div>
+                <div className="text-center">
+                  <img src="/0_star.png" className="inline-img-responsive rating-stars-img " id="stars-img" name="stars-img"/>
+                </div>
               <hr/>
               <div className="form-group text-center">
                 <button className="btn-lg" type="submit"  id="reviews-div">Add Review</button>

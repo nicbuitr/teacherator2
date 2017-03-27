@@ -60,7 +60,7 @@ class App extends Component {
       <div key={"teacher_" + index} id={"teacher_" + index} className="col-md-2 teacher-list-element" onClick={this.handleClick.bind(this)}>
           <img src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
           <h5>{teacher.name}</h5>
-          <img src={"/"+teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img " id="stars-img" name="stars-img"/>
+          <img src={"/"+teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img "/>
       </div>
     ));
   }
