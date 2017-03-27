@@ -36,11 +36,11 @@ export default class Teacher extends Component {
 
     addReview(e){
         e.preventDefault();
-        this.state.totalScore = starCount;
-        // Set the checked property to the opposite of its current value
-        //this.props.teacher.reviews.push(this.state);
+        this.setState({totalScore: starCount});
+        // Set the checked property to the opposite of its current value        
         this.setState({createdAt: new Date()});
         Meteor.call('teachers.update', this.props.teacher._id, this.state);
+        this.props.teacher.reviews.push(this.state);
         var criterias = this.state.criterias;
 
         //Reinitialize for a new review

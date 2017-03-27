@@ -12,10 +12,6 @@ if (Meteor.isServer) {
 }
  
 Meteor.methods({
-  'teachers.search'() {
- 
-    Teachers.find();
-  },
   'teachers.update'(teacherId, review) {
  
     Teachers.update(teacherId, { $push: { reviews: review } });

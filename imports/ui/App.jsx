@@ -15,6 +15,7 @@ class App extends Component {
  
     this.state = {
       selectedTeacher: "",
+      queryName:"",
       hideCompleted: false,
     };
   }
@@ -26,21 +27,21 @@ class App extends Component {
     // Find the text field via the React ref
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
  
-    Meteor.call('teachers.search', text);
+    this.setState({queryName: text});
   }
 
   handleClick(event) {
     event.preventDefault();
     let teacherId  = event.currentTarget.id;
     if (this.state.selectedTeacher.trim() != ""){
-      document.getElementById(this.state.selectedTeacher).className = "col-md-2 teacher-list-element";
+      document.getElementById(this.state.selectedTeacher).className = "col-xs-3 teacher-list-element";
     }
     this.setState({selectedTeacher: teacherId});
-    document.getElementById(teacherId).className = "col-md-2 teacher-list-element-selected";
+    document.getElementById(teacherId).className = "col-xs-3 teacher-list-element-selected";
     
     let teacher = this.props.teachers[teacherId.split("_")[1]];  
     
-    this.render(<TeacherReviews teacher={teacher} />, document.getElementById('teacher-reviews-render-target'));
+    render(<TeacherReviews teacher={teacher} />, document.getElementById('teacher-reviews-render-target'));
     window.location.replace('#teacher-reviews-div');
     
   }
@@ -57,7 +58,7 @@ class App extends Component {
       filteredTeachers = filteredTeachers.filter(teacher => !teacher.checked);
     }
     return filteredTeachers.map((teacher, index) => (
-      <div key={"teacher_" + index} id={"teacher_" + index} className="col-md-2 teacher-list-element" onClick={this.handleClick.bind(this)}>
+      <div key={"teacher_" + index} id={"teacher_" + index} className="col-xs-3 teacher-list-element" onClick={this.handleClick.bind(this)}>
           <img src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
           <h5>{teacher.name}</h5>
           <img src={"/"+teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img "/>
@@ -104,6 +105,6 @@ export default createContainer(() => {
  Meteor.subscribe('teachers');
   
   return {
-    teachers: Teachers.find({}, { sort: { avg_review: -1 }, limit: 6}).fetch(),
+    teachers: Teachers.find({}, { sort: { avg_review: -1 }, limit: 4}).fetch(),
   };
 }, App);
