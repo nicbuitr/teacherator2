@@ -1,126 +1,110 @@
 /* CSS declarations go here */
-body {
-  font-family: sans-serif;
-  background-color: #315481;
-  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
-  background-attachment: fixed;
- 
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
- 
-  padding: 0;
-  margin: 0;
- 
-  font-size: 14px;
+* {
+  font-family: Roboto !important;
 }
- 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  min-height: 100%;
-  background: white;
+
+body {
+  
+  background: url(/blackboard_bg.jpg) round;
+  background-attachment: fixed;
 }
  
 header {
-  background: #d2edf4;
-  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+  background: #eeeeee;
+  background-image: linear-gradient(to bottom, #ffffff, #eeeeee 50%);
   padding: 20px 15px 15px 15px;
   position: relative;
 }
- 
-#login-buttons {
-  display: block;
+
+hr{
+  border-top: 1px solid #000000 !important;
 }
- 
-h1 {
-  font-size: 1.5em;
-  margin: 0;
-  margin-bottom: 10px;
-  display: inline-block;
-  margin-right: 1em;
+
+.app-title {
+  border-style: groove;
+}
+
+.bg-color {
+  background-color: #eeeeee !important;
+}
+
+.teacher-list-element {
+    padding: 1em;
+}
+
+.teacher-list-element:hover {
+    border-style: groove;
+}
+
+.footer {
+  text-align: center;
+    color: white;
+}
+
+.teacher-info {
+  text-align: center;
+  padding: 2.322em 2em;
+}
+.teacher-profile-img {
+    width: 15em;
+    border-radius: 1em;
+    border: thick groove snow;
+}
+
+.inline-img-responsive {
+    max-width: 100%;
+    display: inline;
+
+}
+
+.rating-stars-img {
+  width: 25em;
+}
+
+.criteria-checkbox {
+  width: 2em;
+    height: 2em;
+}
+
+.reviews {
+  padding: 0 20%;
+    font-weight: bold;
+}
+
+.good-review {
+  background-color: rgba(139, 195, 74, 0.25);
+}
+
+.bad-review {
+  background-color: rgba(244, 67, 54, 0.25);
+}
+
+.comments {
+  background-color: rgba(33, 150, 243, 0.25);
+}
+
+.caption {
+  margin: -0.5em 0;
+    display: block;
 }
  
 form {
   margin-top: 10px;
   margin-bottom: -10px;
   position: relative;
+  padding-top: 1em;
 }
  
 .new-task input {
+  text-align: center;
   box-sizing: border-box;
-  padding: 10px 0;
   background: transparent;
   border: none;
   width: 100%;
-  padding-right: 80px;
-  font-size: 1em;
-}
- 
-.new-task input:focus{
-  outline: 0;
-}
- 
-ul {
-  margin: 0;
-  padding: 0;
-  background: white;
-}
- 
-.delete {
-  float: right;
-  font-weight: bold;
-  background: none;
-  font-size: 1em;
-  border: none;
-  position: relative;
-}
- 
-li {
-  position: relative;
-  list-style: none;
-  padding: 15px;
-  border-bottom: #eee solid 1px;
-}
- 
-li .text {
-  margin-left: 10px;
-}
- 
-li.checked {
-  color: #888;
-}
- 
-li.checked .text {
-  text-decoration: line-through;
-}
- 
-li.private {
-  background: #eee;
-  border-color: #ddd;
+  font-size: 1.5em;
+  font-style: italic;
 }
  
 header .hide-completed {
   float: right;
-}
- 
-.toggle-private {
-  margin-left: 5px;
-}
- 
-@media (max-width: 600px) {
-  li {
-    padding: 12px 15px;
-  }
- 
-  .search {
-    width: 150px;
-    clear: both;
-  }
- 
-  .new-task input {
-    padding-bottom: 5px;
-  }
 }

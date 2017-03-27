@@ -1,0 +1,63 @@
+import React, { Component, PropTypes } from 'react';
+
+export default class TeacherInfo extends Component {
+    render(){
+        return(
+            <div className="jumbotron teacher-info">
+                <div className="container">
+                    <div className="row">
+                        <img src="/xavier.png" className="teacher-profile-img inline-img-responsive" />
+                        <h6><a className="caption" href="http://marvel.com/universe/Professor_X">&copy; Marvel</a></h6>
+                        <h2>Charles Francis Xavier (Professor X) </h2>
+                        <hr/>
+                        <div className="container">
+                            <h4>Mutant rights activist, geneticist, teacher, formerly adventurer, soldier</h4>
+                        </div>
+                        <hr/>
+                        <div className="text-left">
+                            <h5><strong>Studies</strong></h5>
+                            <ul>
+                                <li>
+                                    Ph.D in Genetics
+                                </li>
+                                <li>
+                                    Ph.D in Biophysics
+                                </li>
+                                <li>
+                                    Ph.D in Psychology
+                                </li>
+                                <li>
+                                    Ph.D in Anthropology
+                                </li>
+                                <li>
+                                    M.D. in Psychiatry
+                                </li>
+                            </ul>
+                        </div>
+                        <hr/>
+                        <div className="text-left">
+                            <h5><strong>Classes given</strong></h5>
+                            <ul>
+                                <li>
+                                    Genetics 101
+                                </li>
+                                <li>
+                                    Introduction to Biophysics
+                                </li>
+                                <li>
+                                    Psychology of the Gifted
+                                </li>
+                                <li>
+                                    Anthropology Basics
+                                </li>
+                                <li>
+                                    Psychiatry for the Ill Minded
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
