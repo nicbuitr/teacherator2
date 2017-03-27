@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
 var starCount = 0;
 
 export default class Teacher extends Component {
@@ -28,19 +29,23 @@ export default class Teacher extends Component {
                       },
                     ],
           totalScore:0,
-          comments:""
+          comments:"",
+          createdAt:"",
       }  
     }
 
     addReview(e){
         e.preventDefault();
         this.state.totalScore = starCount;
-        actions.addReview(this.state);
+        // Set the checked property to the opposite of its current value
+        //this.props.teacher.reviews.push(this.state);
+        this.setState({createdAt: new Date()});
+        Meteor.call('teachers.update', this.props.teacher._id, this.state);
         var criterias = this.state.criterias;
 
         //Reinitialize for a new review
         starCount = 0;
-        document.getElementById("stars-img").src ="./img/0_star.png";
+        document.getElementById("stars-img").src ="/0_star.png";
         for (var i = 1; i <= criterias.length; i++) {
           document.getElementById("criteria_"+i).checked = false;
           criterias[i-1].selection = 0;
@@ -64,13 +69,14 @@ export default class Teacher extends Component {
         if (e.target.checked) {
           starCount++;
           stateValue = 1;
-          criterias[name.split("_")[1]-1].selection = stateValue;
         }
         else{
           starCount--;
         }
+        criterias[name.split("_")[1]-1].selection = stateValue;
       }
-      document.getElementById("stars-img").src ="./img/"+starCount+"_star.png";
+      console.log(document.getElementById("stars-img").src);
+      document.getElementById("stars-img").src ="/"+starCount+"_star.png";
       this.setState(state);
     }
 
@@ -85,7 +91,7 @@ export default class Teacher extends Component {
                   <label className="control-label" key={"criteria_control_label_"+(i+1)} htmlFor={"criteria_"+(i+1)}>{criterias[i].description}</label>
                 </div>
                 <div className="col-md-1 text-right" key={"criteria_text_right_"+(i+1)}> 
-                  <input type="checkbox" className="criteria-checkbox" key={"criteria_checkbox"+(i+1)} id={"criteria_"+(i+1)} name={"criteria_"+(i+1)} value={criterias[i].selection} onChange={this.handleInputChange} />
+                  <input type="checkbox" className="criteria-checkbox" key={"criteria_checkbox"+(i+1)} id={"criteria_"+(i+1)} name={"criteria_"+(i+1)} value={criterias[i].selection} onChange={this.handleInputChange.bind(this)} />
                 </div>
               </div>
             </div>
@@ -95,16 +101,19 @@ export default class Teacher extends Component {
           <div className="jumbotron">
             <div className="row text-center">
               <h2>Add Review By Choosing The Options That Apply</h2>
-              <hr/>
-              <img src="./img/0_star.png" className="inline-img-responsive rating-stars-img " id="stars-img" name="stars-img"/>
-              <hr/>
             </div>
-            <form className="form" onSubmit={this.addReview}>
+            <hr/>
+            <form className="form" onSubmit={this.addReview.bind(this)}>
               {rows}               
               <div className="form-group">
                 <label className="control-label" htmlFor="comments">Suggestions, compliments, rants or comments:</label>
-                <textarea className="form-control" rows="5" id="comments" name="comments" value={this.state.comments} onChange={this.handleInputChange} placeholder="Write here any suggestion, compliment, rant or comment you may have..."></textarea>                    
+                <textarea className="form-control" rows="5" id="comments" name="comments" value={this.state.comments} onChange={this.handleInputChange.bind(this)} placeholder="Write here any suggestion, compliment, rant or comment you may have..."></textarea>                    
               </div>
+              <hr/>
+              <div className="text-center">
+                <img src="/0_star.png" className="inline-img-responsive rating-stars-img " id="stars-img" name="stars-img"/>
+              </div>
+              <hr/>
               <div className="form-group text-center">
                 <button className="btn-lg" type="submit"  id="reviews-div">Add Review</button>
               </div>

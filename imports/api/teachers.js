@@ -12,29 +12,12 @@ if (Meteor.isServer) {
 }
  
 Meteor.methods({
-  'teachers.insert'(text) {
-    check(text, String);
+  'teachers.search'() {
  
-    // Make sure the user is logged in before inserting a teacher
-//    if (! Meteor.userId()) {
-//      throw new Meteor.Error('not-authorized');
-//    }
- 
-    Teachers.insert({
-      text,
-      createdAt: new Date(),
-      checked: false,
-    });
+    Teachers.find();
   },
-  'teachers.remove'(teacherId) {
-    check(teacherId, String);
+  'teachers.update'(teacherId, review) {
  
-    Teachers.remove(teacherId);
-  },
-  'teachers.setChecked'(teacherId, setChecked) {
-    check(teacherId, String);
-    check(setChecked, Boolean);
- 
-    Teachers.update(teacherId, { $set: { checked: setChecked } });
+    Teachers.update(teacherId, { $push: { reviews: review } });
   },
 });

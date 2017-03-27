@@ -2,42 +2,46 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { render } from 'react-dom';
  
-import { Tasks } from '../api/tasks.js';
 import { Teachers } from '../api/teachers.js';
  
-import Task from './Task.jsx';
 import Teacher from './Teacher.jsx';
 import TeacherReviews from './TeacherReviews.jsx';
  
 // App component - represents the whole app
 class App extends Component {
+
   constructor(props) {
     super(props);
  
     this.state = {
+      selectedTeacher: "",
       hideCompleted: false,
     };
   }
 
-  handleSubmit(event) {
+  //Busqueda de profesores
+  handleChange(event) {
     event.preventDefault();
  
     // Find the text field via the React ref
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
  
-    Meteor.call('tasks.insert', text);
- 
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+    Meteor.call('teachers.search', text);
   }
 
   handleClick(event) {
     event.preventDefault();
-    let teacherId  = event.currentTarget.id.split("_")[1];
-    console.log("Teacher ID: "+ teacherId);
-    let teacher = this.props.teachers[teacherId];
+    let teacherId  = event.currentTarget.id;
+    if (this.state.selectedTeacher.trim() != ""){
+      document.getElementById(this.state.selectedTeacher).className = "col-md-2 teacher-list-element";
+    }
+    this.setState({selectedTeacher: teacherId});
+    document.getElementById(teacherId).className = "col-md-2 teacher-list-element-selected";
+    
+    let teacher = this.props.teachers[teacherId.split("_")[1]];  
     
     render(<TeacherReviews teacher={teacher} />, document.getElementById('teacher-reviews-render-target'));
+    window.location.replace('#teacher-reviews-div');
     
   }
 
@@ -56,18 +60,8 @@ class App extends Component {
       <div key={"teacher_" + index} id={"teacher_" + index} className="col-md-2 teacher-list-element" onClick={this.handleClick.bind(this)}>
           <img src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
           <h5>{teacher.name}</h5>
-          TODO Stars ***
+          <img src={"/"+teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img " id="stars-img" name="stars-img"/>
       </div>
-    ));
-  }
-
-  renderTasks() {
-    let filteredTasks = this.props.tasks;
-    if (this.state.hideCompleted) {
-      filteredTasks = filteredTasks.filter(task => !task.checked);
-    }
-    return filteredTasks.map((task) => (
-      <Task key={task._id} task={task} />
     ));
   }
  
@@ -79,7 +73,7 @@ class App extends Component {
             <h1>Teacherator</h1>
             <p>The teacher reviewing App</p>
           </div>
-          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+          <form className="new-task" onChange={this.handleChange.bind(this)} >
             <hr/>
             <input
               type="text"
@@ -93,15 +87,8 @@ class App extends Component {
           <div className="text-center row">
             {this.renderTeachers()}
           </div>
-          <label className="hide-completed">
-            <input
-              type="checkbox"
-              readOnly
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
-            />
-            Hide Completed Tasks
-          </label>
+          <div id="teacher-reviews-div">
+          </div>
         </div>
         <div id="teacher-reviews-render-target"></div>
       </div>
@@ -110,18 +97,13 @@ class App extends Component {
 }
 
 App.propTypes = {
-  tasks: PropTypes.array.isRequired,
   teachers: PropTypes.array.isRequired,
-  incompleteCount: PropTypes.number.isRequired,
 };
  
 export default createContainer(() => {
- Meteor.subscribe('tasks');
  Meteor.subscribe('teachers');
   
   return {
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
     teachers: Teachers.find({}, { sort: { avg_review: -1 }, limit: 6}).fetch(),
-    incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
   };
 }, App);

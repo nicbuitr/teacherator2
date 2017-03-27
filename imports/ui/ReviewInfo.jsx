@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class Reviewreview extends Component {
+export default class ReviewInfo extends Component {
     render(){
         var totalScore = this.props.review.totalScore;
         var rows = [];
         var criterias = this.props.review.criterias;
-        for (var i = 0; i < criterias.length; i++) {
+        for (var i = criterias.length-1; i >= 0; i--) {
         rows.push(
                 <div className={((criterias[i].selection==1)?"good-review":" bad-review")+" panel-body"} key={"criteria_description"+(i+1)}> {criterias[i].description + ": " + (criterias[i].selection==1?"Yes!!":"No :(")}</div>
           );

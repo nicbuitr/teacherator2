@@ -8,7 +8,7 @@ import AddReview from './AddReview.jsx';
 // Teacher component - represents a single todo item
 export default class TeacherReviews extends Component {
   renderReviews(){
-      return this.props.teacher.reviews.reverse().map((review, index) => (
+      return this.props.teacher.reviews.map((review, index) => (
               <ReviewInfo review={review} key={"review"+index} />
           ));
   }
@@ -18,10 +18,10 @@ export default class TeacherReviews extends Component {
           <div>
              <div className="row">
                 <div className="col-md-5">
-                    <TeacherInfo teacher={this.props.teacher}/>
+                  <TeacherInfo teacher={this.props.teacher}/>
                 </div>
                 <div className="col-md-7">
-                  AddReview teacher={this.props.teacher}/>
+                  <AddReview teacher={this.props.teacher}/>
                 </div>
              </div>
              <div className="row reviews text-center">

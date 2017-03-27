@@ -36,6 +36,12 @@ hr{
     border-style: groove;
 }
 
+.teacher-list-element-selected {
+    padding: 1em;
+    border-style: ridge;
+    background-color: #cccccc;
+}
+
 .footer {
   text-align: center;
     color: white;
@@ -43,7 +49,7 @@ hr{
 
 .teacher-info {
   text-align: center;
-  padding: 2.322em 2em;
+  padding: 2.822em 2em !important;
 }
 .teacher-profile-img {
     width: 15em;
