@@ -40,7 +40,7 @@ class App extends Component {
     
     let teacher = this.props.teachers[teacherId.split("_")[1]];  
     
-    render(<TeacherReviews teacher={teacher} />, document.getElementById('teacher-reviews-render-target'));
+    this.render(<TeacherReviews teacher={teacher} />, document.getElementById('teacher-reviews-render-target'));
     window.location.replace('#teacher-reviews-div');
     
   }

@@ -72,6 +72,10 @@ hr{
     height: 2em;
 }
 
+.btn-add-review {
+  margin: 1.656em;
+}
+
 .reviews {
   padding: 0 20%;
     font-weight: bold;

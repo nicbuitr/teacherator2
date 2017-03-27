@@ -114,7 +114,7 @@ export default class Teacher extends Component {
                 </div>
               <hr/>
               <div className="form-group text-center">
-                <button className="btn-lg" type="submit"  id="reviews-div">Add Review</button>
+                <button className="btn-lg btn-add-review" type="submit"  id="reviews-div">Add Review</button>
               </div>
             </form>
           </div>
