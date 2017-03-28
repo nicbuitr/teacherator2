@@ -3,12 +3,11 @@
   font-family: Roboto !important;
 }
 
-body {
-  
+body {  
   background: url(/blackboard_bg.jpg) round;
   background-attachment: fixed;
 }
- 
+
 header {
   background: #eeeeee;
   background-image: linear-gradient(to bottom, #ffffff, #eeeeee 50%);
@@ -20,6 +19,10 @@ hr{
   border-top: 1px solid #000000 !important;
 }
 
+h5{
+  word-break: break-word;
+}
+
 .app-title {
   border-style: groove;
 }
@@ -29,44 +32,46 @@ hr{
 }
 
 .teacher-list-element {
-    padding: 1em;
+  padding: 1em;
 }
 
 .teacher-list-element:hover {
-    border-style: groove;
-    margin: 0 0 -0.786em 0;
+  border-style: groove;
+  margin: 0 0 -0.786em 0;
 }
 
 .teacher-list-element-selected {
-    padding: 1em;
-    border-style: ridge;
-    background-color: #cccccc;
+  padding: 1em;
+  border-style: ridge;
+  background-color: #cccccc;
 }
 
 .footer {
   text-align: center;
-    color: white;
+  color: white;
 }
 
 .teacher-info {
   text-align: center;
-  padding: 2.822em 2em !important;
-}
-
-.list-img{
-  height: 15em;
+  padding: 0 2em !important;
+  height: 65.858em;
 }
 
 .teacher-profile-img {
-    width: 15em;
-    border-radius: 1em;
-    border: thick groove snow;
+  width: 15em;
+  border-radius: 1em;
+  border: thick groove snow;
 }
 
 .inline-img-responsive {
-    max-width: 100%;
-    display: inline;
+  max-width: 100%;
+  display: inline;
 
+}
+
+.list-rating-stars-img {
+  width: 16em;
+  margin-top: 0.5em;
 }
 
 .rating-stars-img {
@@ -75,7 +80,7 @@ hr{
 
 .criteria-checkbox {
   width: 2em;
-    height: 2em;
+  height: 2em;
 }
 
 .btn-add-review {
@@ -84,7 +89,7 @@ hr{
 
 .reviews {
   padding: 0 20%;
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .good-review {
@@ -101,16 +106,17 @@ hr{
 
 .caption {
   margin: -0.5em 0;
-    display: block;
+  display: block;
+  word-break: break-all;
 }
- 
+
 form {
   margin-top: 10px;
   margin-bottom: -10px;
   position: relative;
   padding-top: 1em;
 }
- 
+
 .new-task input {
   text-align: center;
   box-sizing: border-box;
@@ -120,7 +126,7 @@ form {
   font-size: 1.5em;
   font-style: italic;
 }
- 
+
 header .hide-completed {
   float: right;
 }
