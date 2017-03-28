@@ -89,11 +89,13 @@ class App extends Component {
             <hr/>
           </form>
         </header>
-        <div className="jumbotron">
-          <div className="text-center row">
-            <h2><strong>Top Rated Teachers</strong></h2>
+        <div className="text-center jumbotron">
+          <h2><strong>Top Rated Teachers</strong></h2>
+          <hr/>
+          <div className="row">
             {this.renderTeachers()}
           </div>
+          <hr/>
           <div id="teacher-reviews-div"></div>
         </div>
         {(this.props.teachers.find(teacher => teacher._id._str === this.state.selectedTeacherId) != null)?<TeacherReviews key={"teacher_reviews_"+this.state.selectedTeacherId} teacher={this.props.teachers.find(teacher => teacher._id._str === this.state.selectedTeacherId)} />:""}
