@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
-var starCount = 0;
 
 export default class Teacher extends Component {
     constructor(props) {
@@ -34,24 +33,26 @@ export default class Teacher extends Component {
       }  
     }
 
+    componentDidMount(){
+      window.location.replace('#teacher-reviews-div');
+    }
+
     addReview(e){
         e.preventDefault();
-        this.setState({totalScore: starCount});
-        // Set the checked property to the opposite of its current value        
-        this.setState({createdAt: new Date()});
-        Meteor.call('teachers.update', this.props.teacher._id, this.state);
+        this.state.createdAt = new Date();      
+        Meteor.call('teachers.addReview', this.props.teacher._id, this.state);
         this.props.teacher.reviews.push(this.state);
         var criterias = this.state.criterias;
 
         //Reinitialize for a new review
-        starCount = 0;
+        this.state.totalScore = 0;
         document.getElementById("stars-img").src ="/0_star.png";
         for (var i = 1; i <= criterias.length; i++) {
           document.getElementById("criteria_"+i).checked = false;
           criterias[i-1].selection = 0;
         }         
         document.getElementById("comments").value = "";
-        this.state.comments = "";
+        this.setState({comments: ""});
         window.location.replace('#reviews-div');
     }
 
@@ -67,15 +68,15 @@ export default class Teacher extends Component {
       }
       else{
         if (e.target.checked) {
-          starCount++;
+          this.state.totalScore++;
           stateValue = 1;
         }
         else{
-          starCount--;
+          this.state.totalScore--;
         }
         criterias[name.split("_")[1]-1].selection = stateValue;
       }
-      document.getElementById("stars-img").src ="/"+starCount+"_star.png";
+      document.getElementById("stars-img").src ="/" + this.state.totalScore + "_star.png";
       this.setState(state);
     }
 

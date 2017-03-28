@@ -34,6 +34,7 @@ hr{
 
 .teacher-list-element:hover {
     border-style: groove;
+    margin: 0 0 -0.786em 0;
 }
 
 .teacher-list-element-selected {

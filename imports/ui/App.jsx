@@ -14,9 +14,10 @@ class App extends Component {
     super(props);
  
     this.state = {
-      selectedTeacher: "",
+      selectedTeacherId: "",
       queryName:"",
       hideCompleted: false,
+      maxTeachersToList: 4
     };
   }
 
@@ -33,17 +34,14 @@ class App extends Component {
   handleClick(event) {
     event.preventDefault();
     let teacherId  = event.currentTarget.id;
-    if (this.state.selectedTeacher.trim() != ""){
-      document.getElementById(this.state.selectedTeacher).className = "col-xs-3 teacher-list-element";
+    if (this.state.selectedTeacherId.trim() != ""){
+      if (document.getElementById(this.state.selectedTeacherId) != null){
+        document.getElementById(this.state.selectedTeacherId).className = "col-xs-3 teacher-list-element";
+      }
     }
-    this.setState({selectedTeacher: teacherId});
+    this.setState({selectedTeacherId: teacherId});
     document.getElementById(teacherId).className = "col-xs-3 teacher-list-element-selected";
-    
-    let teacher = this.props.teachers[teacherId.split("_")[1]];  
-    
-    render(<TeacherReviews teacher={teacher} />, document.getElementById('teacher-reviews-render-target'));
-    window.location.replace('#teacher-reviews-div');
-    
+    //window.location.replace('#teacher-reviews-div');
   }
 
   toggleHideCompleted() {
@@ -52,18 +50,29 @@ class App extends Component {
     });
   }
 
-  renderTeachers() {
-    let filteredTeachers = this.props.teachers;
-    if (this.state.hideCompleted) {
-      filteredTeachers = filteredTeachers.filter(teacher => !teacher.checked);
+  renderTeachers(e) {
+    if(e != undefined){
+      if(e.target.name === "queryInput"){
+        e.preventDefault();
+        this.setState({queryName: e.target.value});
+      }
     }
-    return filteredTeachers.map((teacher, index) => (
-      <div key={"teacher_" + index} id={"teacher_" + index} className="col-xs-3 teacher-list-element" onClick={this.handleClick.bind(this)}>
-          <img src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
-          <h5>{teacher.name}</h5>
-          <img src={"/"+teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img "/>
-      </div>
-    ));
+
+    let filteredTeachers = this.props.teachers;
+
+    filteredTeachers = filteredTeachers.filter(teacher => teacher.name.toUpperCase().includes(this.state.queryName.toUpperCase()));
+    if (filteredTeachers.length === 0){
+      return (<h2><strong><i>Didn't find any teacher with that name, please try another name...</i></strong></h2>);
+    }
+    else{
+      return filteredTeachers.slice(0, this.state.maxTeachersToList).map((teacher, index) => (
+        <div key={"teacher_thumbnail_"+teacher._id} id={teacher._id} className="col-xs-3 teacher-list-element" onClick={this.handleClick.bind(this)}>
+            <img key={"teacher_thumbnail_image_"+teacher._id} src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
+            <h5 key={"teacher_thumbnail_name_"+teacher._id}>{teacher.name}</h5>
+            <img key={"teacher_thumbnail_stars_"+teacher._id} src={"/"+teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img "/>
+        </div>
+      ));
+    }
   }
  
   render() {
@@ -74,24 +83,20 @@ class App extends Component {
             <h1>Teacherator</h1>
             <p>The teacher reviewing App</p>
           </div>
-          <form className="new-task" onChange={this.handleChange.bind(this)} >
+          <form className="new-task" >
             <hr/>
-            <input
-              type="text"
-              ref="textInput"
-              placeholder="Type a teacher name"
-            />
+            <input type="text" ref="textInput" name="queryInput" placeholder="Type a teacher name" value={this.state.queryName}  onChange={this.renderTeachers.bind(this)}  />
             <hr/>
           </form>
         </header>
         <div className="jumbotron">
           <div className="text-center row">
+            <h2><strong>Top Rated Teachers</strong></h2>
             {this.renderTeachers()}
           </div>
-          <div id="teacher-reviews-div">
-          </div>
+          <div id="teacher-reviews-div"></div>
         </div>
-        <div id="teacher-reviews-render-target"></div>
+        {(this.props.teachers.find(teacher => teacher._id._str === this.state.selectedTeacherId) != null)?<TeacherReviews key={"teacher_reviews_"+this.state.selectedTeacherId} teacher={this.props.teachers.find(teacher => teacher._id._str === this.state.selectedTeacherId)} />:""}
       </div>
     );
   }
@@ -105,6 +110,6 @@ export default createContainer(() => {
  Meteor.subscribe('teachers');
   
   return {
-    teachers: Teachers.find({}, { sort: { avg_review: -1 }, limit: 4}).fetch(),
+    teachers: Teachers.find({}, { sort: { avg_review: -1 }}).fetch(),
   };
 }, App);

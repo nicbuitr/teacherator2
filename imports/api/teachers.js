@@ -12,8 +12,13 @@ if (Meteor.isServer) {
 }
  
 Meteor.methods({
-  'teachers.update'(teacherId, review) {
+  'teachers.addReview'(teacherId, review) {
  
     Teachers.update(teacherId, { $push: { reviews: review } });
+  },
+
+  'teachers.deleteReview'(teacherId, review) {
+ 
+    Teachers.update(teacherId, { $pop: { reviews: review } });
   },
 });
