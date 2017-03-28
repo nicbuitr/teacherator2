@@ -52,6 +52,11 @@ hr{
   text-align: center;
   padding: 2.822em 2em !important;
 }
+
+.list-img{
+  height: 15em;
+}
+
 .teacher-profile-img {
     width: 15em;
     border-radius: 1em;

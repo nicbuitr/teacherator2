@@ -7,7 +7,7 @@ export default class TeacherInfo extends Component {
                 <div className="container">
                     <div className="row">
                         <img src={this.props.teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
-                        <h6><a className="caption" href="http://marvel.com/universe/Professor_X">&copy; Marvel</a></h6>
+                        <h6><a className="caption" href={this.props.teacher.copyright}>{this.props.teacher.copyright} &copy; </a></h6>
                         <h2>{this.props.teacher.name}</h2>
                         <img src={"/"+this.props.teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img "/>
                         <hr/>

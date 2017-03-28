@@ -67,7 +67,7 @@ class App extends Component {
     else{
       return filteredTeachers.slice(0, this.state.maxTeachersToList).map((teacher, index) => (
         <div key={"teacher_thumbnail_"+teacher._id} id={teacher._id} className="col-xs-3 teacher-list-element" onClick={this.handleClick.bind(this)}>
-            <img key={"teacher_thumbnail_image_"+teacher._id} src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
+            <img key={"teacher_thumbnail_image_"+teacher._id} src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive list-img" />
             <h5 key={"teacher_thumbnail_name_"+teacher._id}>{teacher.name}</h5>
             <img key={"teacher_thumbnail_stars_"+teacher._id} src={"/"+teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img "/>
         </div>
