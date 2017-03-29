@@ -79,7 +79,7 @@ export default class Teacher extends Component {
         document.getElementById('stars-img').src ='/' + this.state.totalScore + '_star.png';
         this.setState(state);
     }
-
+    //Aca si es un div que se añade muchas veces y que varia con respecto a unos parametres quizas es mejor hacerlo en un componente aparte y pasarle los parametros por props.
     render(){
         var rows = [];
         var criterias = this.state.criterias;
