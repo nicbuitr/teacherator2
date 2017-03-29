@@ -17,5 +17,9 @@
     "react-addons-transition-group": "^15.4.2",
     "react-addons-update": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-plugin-react": "^6.10.3"
   }
 }

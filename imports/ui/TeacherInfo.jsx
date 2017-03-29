@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component } from 'react';
 
 export default class TeacherInfo extends Component {
     render(){
@@ -9,7 +9,7 @@ export default class TeacherInfo extends Component {
                         <img src={this.props.teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
                         <h6><a className="caption" href={this.props.teacher.copyright}>{this.props.teacher.copyright} &copy; </a></h6>
                         <h2>{this.props.teacher.name}</h2>
-                        <img src={"/"+this.props.teacher.avg_review+"_star.png"} className="inline-img-responsive rating-stars-img "/>
+                        <img src={'/'+this.props.teacher.avg_review+'_star.png'} className="inline-img-responsive rating-stars-img "/>
                         <hr/>
                         <div className="container">
                             <h4>{this.props.teacher.occupation}</h4>
@@ -18,47 +18,19 @@ export default class TeacherInfo extends Component {
                         <div className="text-left">
                             <h5><strong>Studies</strong></h5>
                             <ul>
-                                <li>
-                                    Ph.D in Genetics
-                                </li>
-                                <li>
-                                    Ph.D in Biophysics
-                                </li>
-                                <li>
-                                    Ph.D in Psychology
-                                </li>
-                                <li>
-                                    Ph.D in Anthropology
-                                </li>
-                                <li>
-                                    M.D. in Psychiatry
-                                </li>
+                                {this.props.teacher.studies.map((study) => ( <li>{study.title}</li> ))}
                             </ul>
                         </div>
                         <hr/>
                         <div className="text-left">
                             <h5><strong>Classes given</strong></h5>
                             <ul>
-                                <li>
-                                    Genetics 101
-                                </li>
-                                <li>
-                                    Introduction to Biophysics
-                                </li>
-                                <li>
-                                    Psychology of the Gifted
-                                </li>
-                                <li>
-                                    Anthropology Basics
-                                </li>
-                                <li>
-                                    Psychiatry for the Ill Minded
-                                </li>
+                                {this.props.teacher.classes_given.map((term) => ( <li>{term.name}</li> ))}
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }

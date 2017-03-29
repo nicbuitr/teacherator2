@@ -37,37 +37,37 @@ hr{
 }
 
 .teacher-list-element-selected {
-  padding: 1em;
-  border-style: ridge;
   background-color: #cccccc;
+  border-style: ridge;
+  padding: 1em;
 }
 
 .footer {
-  text-align: center;
   color: white;
+  text-align: center;
 }
 
 .teacher-info {
-  text-align: center;
-  padding: 2em !important;
   height: 65.858em;
+  padding: 2em !important;
+  text-align: center;
 }
 
 .teacher-profile-img {
-  width: 15em;
   border-radius: 1em;
   border: thick groove snow;
+  width: 15em;
 }
 
 .inline-img-responsive {
-  max-width: 100%;
   display: inline;
+  max-width: 100%;
 
 }
 
 .list-rating-stars-img {
-  width: 16em;
   margin-top: 0.5em;
+  width: 16em;
 }
 
 .rating-stars-img {
@@ -75,8 +75,8 @@ hr{
 }
 
 .criteria-checkbox {
-  width: 2em;
   height: 2em;
+  width: 2em;
 }
 
 .btn-add-review {
@@ -84,8 +84,8 @@ hr{
 }
 
 .reviews {
-  padding: 0 20%;
   font-weight: bold;
+  padding: 0 20%;
 }
 
 .good-review {
@@ -101,26 +101,26 @@ hr{
 }
 
 .caption {
-  margin: -0.5em 0;
   display: block;
+  margin: -0.5em 0;
   word-break: break-all;
 }
 
 form {
-  margin-top: 10px;
   margin-bottom: -10px;
-  position: relative;
+  margin-top: 10px;
   padding-top: 1em;
+  position: relative;
 }
 
 .new-task input {
-  text-align: center;
-  box-sizing: border-box;
   background: transparent;
   border: none;
-  width: 100%;
+  box-sizing: border-box;
   font-size: 1.5em;
   font-style: italic;
+  text-align: center;
+  width: 100%;
 }
 
 header .hide-completed {
