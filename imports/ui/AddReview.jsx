@@ -76,7 +76,10 @@ export default class Teacher extends Component {
             }
             criterias[name.split('_')[1]-1].selection = stateValue;
         }
-        document.getElementById('stars-img').src ='/' + this.state.totalScore + '_star.png';
+
+        let starsImage = document.getElementById('stars-img');
+        starsImage.src = '/' + this.state.totalScore + '_star.png';
+        starsImage.alt = this.state.totalScore + ' stars image for review to add.';
         this.setState(state);
     }
     
@@ -112,7 +115,7 @@ export default class Teacher extends Component {
               </div>
               <hr/>
                 <div className='text-center'>
-                  <img src='/0_star.png' className='inline-img-responsive rating-stars-img ' id='stars-img' name='stars-img' alt='Star rating'/>
+                  <img src='/0_star.png' className='inline-img-responsive rating-stars-img ' id='stars-img' name='stars-img' alt={'0 stars image for review to add.'}/>
                 </div>
               <hr/>
               <div className='form-group text-center'>

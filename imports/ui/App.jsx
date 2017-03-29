@@ -18,6 +18,10 @@ class App extends Component {
         };
     }
 
+    componentDidMount(){
+        document.documentElement.lang = 'en';
+    }
+
     handleClick(event) {
         event.preventDefault();
         let teacherId  = event.currentTarget.id;
@@ -28,6 +32,13 @@ class App extends Component {
         }
         this.setState({selectedTeacherId: teacherId});
         document.getElementById(teacherId).className = 'col-xs-4 teacher-list-element-selected';
+    }
+
+    handleKeyDown(event){
+        if (event.keyCode != 13 && event.keyCode != 32){
+            return;
+        }
+        this.handleClick(event);
     }
 
     toggleHideCompleted() {
@@ -52,9 +63,9 @@ class App extends Component {
         }
         else{
             return filteredTeachers.slice(0, this.state.maxTeachersToList).map((teacher) => (
-        <div key={'teacher_thumbnail_'+teacher._id} id={teacher._id} className="col-xs-4 teacher-list-element" onClick={this.handleClick.bind(this)}>
-            <img key={'teacher_thumbnail_image_'+teacher._id} src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
-            <img key={'teacher_thumbnail_stars_'+teacher._id} src={'/'+teacher.avg_review+'_star.png'} className="inline-img-responsive list-rating-stars-img "/>
+        <div key={'teacher_thumbnail_'+teacher._id} id={teacher._id} className="col-xs-4 teacher-list-element" onClick={this.handleClick.bind(this)} onKeyDown={this.handleKeyDown.bind(this)} tabIndex="0" aria-label={'Select teacher ' + teacher.name}>
+            <img key={'teacher_thumbnail_image_'+teacher._id} src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" alt={'Teacher ' + teacher.name + ' profile image thumbnail.'}/>
+            <img key={'teacher_thumbnail_stars_'+teacher._id} src={'/'+teacher.avg_review+'_star.png'} className="inline-img-responsive list-rating-stars-img" alt={teacher.avg_review + ' stars image for  ' + teacher.name + '  average rating.'}/>
             <h5 key={'teacher_thumbnail_name_'+teacher._id}>{teacher.name}</h5>
         </div>
       ));
@@ -71,7 +82,7 @@ class App extends Component {
           </div>
           <form className="new-task" >
             <hr/>
-            <input type="text" ref="textInput" name="queryInput" placeholder="Type a teacher name" value={this.state.queryName}  onChange={this.renderTeachers.bind(this)}  />
+            <input type="text" aria-label="Type a teacher name" ref="textInput" name="queryInput" placeholder="Type a teacher name" value={this.state.queryName}  onChange={this.renderTeachers.bind(this)} />
             <hr/>
           </form>
         </header>
