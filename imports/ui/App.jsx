@@ -31,6 +31,7 @@ class App extends Component {
     }
 
     toggleHideCompleted() {
+     // Me parece muy buena esta asignacion
         this.setState({
             hideCompleted: !this.state.hideCompleted,
         });
@@ -52,15 +53,17 @@ class App extends Component {
         }
         else{
             return filteredTeachers.slice(0, this.state.maxTeachersToList).map((teacher) => (
-        <div key={'teacher_thumbnail_'+teacher._id} id={teacher._id} className="col-xs-4 teacher-list-element" onClick={this.handleClick.bind(this)}>
-            <img key={'teacher_thumbnail_image_'+teacher._id} src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" />
-            <img key={'teacher_thumbnail_stars_'+teacher._id} src={'/'+teacher.avg_review+'_star.png'} className="inline-img-responsive list-rating-stars-img "/>
+             // Para la accesibilidad no olvide poner un atributo alt a cada imagen
+        <div key={'teacher_thumbnail_'+teacher._id} id={teacher._id} className="col-xs-4 teacher-list-element" onClick={this.handleClick.bind(this)} >
+            <img key={'teacher_thumbnail_image_'+teacher._id} src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" alt={'Image of ' + {teacher.name}}/>
+            <img key={'teacher_thumbnail_stars_'+teacher._id} src={'/'+teacher.avg_review+'_star.png'} className="inline-img-responsive list-rating-stars-img " alt={'Rating of ' + {teacher.name}}/>
             <h5 key={'teacher_thumbnail_name_'+teacher._id}>{teacher.name}</h5>
         </div>
       ));
         }
     }
  
+  // Nuevamente para la accesibilidad, puede colocar un aria label a los input
     render() {
         return (
       <div className="container">
@@ -71,7 +74,7 @@ class App extends Component {
           </div>
           <form className="new-task" >
             <hr/>
-            <input type="text" ref="textInput" name="queryInput" placeholder="Type a teacher name" value={this.state.queryName}  onChange={this.renderTeachers.bind(this)}  />
+            <input type="text" ref="textInput" name="queryInput" placeholder="Type a teacher name" value={this.state.queryName}  onChange={this.renderTeachers.bind(this)} aria-label='field for searching for a teacher' />
             <hr/>
           </form>
         </header>
