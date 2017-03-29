@@ -79,7 +79,8 @@ export default class Teacher extends Component {
         document.getElementById('stars-img').src ='/' + this.state.totalScore + '_star.png';
         this.setState(state);
     }
-
+    
+    // Cambios apra mejorar la accesibilidad y facilitar el uso de un screen reader
     render(){
         var rows = [];
         var criterias = this.state.criterias;
@@ -91,7 +92,7 @@ export default class Teacher extends Component {
                   <label className='control-label' key={'criteria_control_label_'+(i+1)} htmlFor={'criteria_'+(i+1)}>{criterias[i].description}</label>
                 </div>
                 <div className='col-md-1 text-right' key={'criteria_text_right_'+(i+1)}> 
-                  <input type='checkbox' className='criteria-checkbox' key={'criteria_checkbox'+(i+1)} id={'criteria_'+(i+1)} name={'criteria_'+(i+1)} value={criterias[i].selection} onChange={this.handleInputChange.bind(this)} />
+                  <input type='checkbox' className='criteria-checkbox' key={'criteria_checkbox'+(i+1)} id={'criteria_'+(i+1)} name={'criteria_'+(i+1)} value={criterias[i].selection} onChange={this.handleInputChange.bind(this)} aria-label="Checkbox for criteria" />
                 </div>
               </div>
             </div>
@@ -111,7 +112,7 @@ export default class Teacher extends Component {
               </div>
               <hr/>
                 <div className='text-center'>
-                  <img src='/0_star.png' className='inline-img-responsive rating-stars-img ' id='stars-img' name='stars-img'/>
+                  <img src='/0_star.png' className='inline-img-responsive rating-stars-img ' id='stars-img' name='stars-img' alt='Star rating'/>
                 </div>
               <hr/>
               <div className='form-group text-center'>
