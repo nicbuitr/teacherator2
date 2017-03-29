@@ -7,7 +7,7 @@ import AddReview from './AddReview.jsx';
 export default class TeacherReviews extends Component {
     renderReviews(){
         return this.props.teacher.reviews.sort(function(a,b) {return (a.createdAt < b.createdAt) ? 1 : ((b.createdAt > a.createdAt) ? -1 : 0);} ).map((review, index) => (
-              <ReviewInfo review={review} teacher={this.props.teacher} key={'teacher_' + this.props.teacher._id + '_review_'+index} />
+              <ReviewInfo review={review} teacher={this.props.teacher} index={index} key={'teacher_' + this.props.teacher._id + '_review_'+index} />
           ));
     }
 

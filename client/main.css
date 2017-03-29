@@ -4,8 +4,7 @@
 }
 
 body {  
-  background: url(/blackboard_bg.jpg) round;
-  background-attachment: fixed;
+  background: black url(blackboard_bg.jpg) fixed round !important;
 }
 
 header {
@@ -32,12 +31,14 @@ hr{
 }
 
 .teacher-list-element:hover {
+  border-radius: 1em;
   border-style: groove;
   margin: 0 0 -0.786em 0;
 }
 
 .teacher-list-element-selected {
   background-color: #cccccc;
+  border-radius: 1em;
   border-style: ridge;
   padding: 1em;
 }
@@ -68,6 +69,7 @@ hr{
 .list-rating-stars-img {
   margin-top: 0.5em;
   width: 16em;
+  border-radius: 1em;
 }
 
 .rating-stars-img {
