@@ -32,7 +32,8 @@ export default class Teacher extends Component {
             createdAt:'',
         };
     }
-
+    
+    //No entiendo ¿este metodo en algun momento se ejecuta?
     componentDidMount(){
         window.location.replace('#teacher-reviews-div');
     }
