@@ -26,8 +26,8 @@ hr{
   background-color: #eeeeee !important;
 }
 
-.teacher-list-element {
-  padding: 1em;
+.teacher-list {
+  padding: 0 1em;
 }
 
 .teacher-list-element:hover {
@@ -40,7 +40,6 @@ hr{
   background-color: #cccccc;
   border-radius: 1em;
   border-style: ridge;
-  padding: 1em;
 }
 
 .footer {
@@ -49,14 +48,13 @@ hr{
 }
 
 .teacher-info {
-  height: 65.858em;
-  padding: 2em !important;
   text-align: center;
 }
 
 .teacher-profile-img {
   border-radius: 1em;
   border: thick groove snow;
+  margin-top: 1.5em;
   width: 15em;
 }
 
@@ -82,7 +80,11 @@ hr{
 }
 
 .btn-add-review {
-  margin: 1.656em;
+  margin-top: 1em;
+}
+
+.add-review {
+  padding: 0 20%;
 }
 
 .reviews {
@@ -106,6 +108,7 @@ hr{
   display: block;
   margin: -0.5em 0;
   word-break: break-all;
+  color: #005fb1;
 }
 
 form {

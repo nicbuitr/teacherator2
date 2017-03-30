@@ -14,18 +14,16 @@ export default class TeacherReviews extends Component {
     render(){
         return(
           <div>
-             <div className="row">
-                <div className="col-md-5">
-                  <TeacherInfo teacher={this.props.teacher} key={'teacher_info_'+this.props.teacher._id}/>
-                </div>
-                <div className="col-md-7">
-                  <AddReview teacher={this.props.teacher} key={'teacher_add_review_'+this.props.teacher._id}/>
-                </div>
-             </div>
-              <div className="row reviews text-center">
+             <div className="teacher-info" tabIndex="0">
+                <TeacherInfo teacher={this.props.teacher} key={'teacher_info_'+this.props.teacher._id}/>
+              </div>
+              <div className="add-review">
+                <AddReview teacher={this.props.teacher} key={'teacher_add_review_'+this.props.teacher._id}/>
+              </div>
+              <div className="reviews text-center">
                 {this.renderReviews()}                
               </div>
-            </div>
+          </div>
         );
     } 
 }

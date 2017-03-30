@@ -89,7 +89,7 @@ class App extends Component {
         <div className="text-center jumbotron">
           <h2><strong>Top Rated Teachers</strong></h2>
           <hr/>
-          <div className="row">
+          <div className="row teacher-list">
             {this.renderTeachers()}
           </div>
           <hr/>

@@ -102,25 +102,27 @@ export default class Teacher extends Component {
         }
         return(
           <div className='jumbotron'>
-            <div className='row text-center'>
-              <h2>Add Review By Choosing The Options That Apply</h2>
-              <hr/>
-            </div>
-            <form className='form' onSubmit={this.addReview.bind(this)}>
-              {rows}               
-              <div className='form-group'>
-                <label className='control-label' htmlFor='comments'>Suggestions, compliments, rants or comments:</label>
-                <textarea className='form-control' rows='5' id='comments' name='comments' value={this.state.comments} onChange={this.handleInputChange.bind(this)} placeholder='Write here any suggestion, compliment, rant or comment you may have...'></textarea>                    
+            <div className='container'>
+              <div className='row text-center'>
+                <h2>Add Review By Choosing The Options That Apply</h2>
+                <hr/>
               </div>
-              <hr/>
-                <div className='text-center'>
-                  <img src='/0_star.png' className='inline-img-responsive rating-stars-img ' id='stars-img' name='stars-img' alt={'0 stars image for review to add.'}/>
+              <form className='form' onSubmit={this.addReview.bind(this)}>
+                {rows}               
+                <div className='form-group'>
+                  <label className='control-label' htmlFor='comments'>Suggestions, compliments, rants or comments:</label>
+                  <textarea className='form-control' rows='5' id='comments' name='comments' value={this.state.comments} onChange={this.handleInputChange.bind(this)} placeholder='Write here any suggestion, compliment, rant or comment you may have...'></textarea>                    
                 </div>
-              <hr/>
-              <div className='form-group text-center'>
-                <button className='btn-lg btn-add-review' type='submit'  id='reviews-div'>Add Review</button>
-              </div>
-            </form>
+                <hr/>
+                  <div className='text-center'>
+                    <img src='/0_star.png' className='inline-img-responsive rating-stars-img ' id='stars-img' name='stars-img' alt={'0 stars image for review to add.'}/>
+                  </div>
+                <hr/>
+                <div className='form-group text-center'>
+                  <button className='btn-lg btn-add-review' type='submit'  id='reviews-div'>Add Review</button>
+                </div>
+              </form>
+            </div>
           </div>
         );
     }
