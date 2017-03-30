@@ -8,6 +8,7 @@ export default class ReviewInfo extends Component {
         this.props.teacher.reviews.pop(this.state);
     }
 
+/** Creo que todos los componentes deberia ser así de pequeños y funcionales **/
     render(){
         var totalScore = this.props.review.totalScore;
         var rows = [];

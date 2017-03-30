@@ -17,7 +17,7 @@ class App extends Component {
             maxTeachersToList: 3
         };
     }
-
+    
     componentDidMount(){
         document.documentElement.lang = 'en';
     }

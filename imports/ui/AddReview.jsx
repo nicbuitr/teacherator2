@@ -77,6 +77,7 @@ export default class Teacher extends Component {
             criterias[name.split('_')[1]-1].selection = stateValue;
         }
 
+        /** Creo que seria más fácil utilizar alguna libreria o review bar que permita hacer esto**/
         let starsImage = document.getElementById('stars-img');
         starsImage.src = '/' + this.state.totalScore + '_star.png';
         starsImage.alt = this.state.totalScore + ' stars image for review to add.';
@@ -86,6 +87,9 @@ export default class Teacher extends Component {
     render(){
         var rows = [];
         var criterias = this.state.criterias;
+        /** La idea de usar React es la reusabilidad, no se esta haciendo el uso efectivo
+        por ejemplo se podria tener todo dentro del fro en otro componente y renderizarlo
+         **/
         for (var i = 0; i < criterias.length; i++) {
             rows.push(
             <div className='form-group' key={'criteria_form_group_'+(i+1)}>
