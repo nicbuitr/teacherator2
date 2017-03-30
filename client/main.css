@@ -83,13 +83,20 @@ hr{
   margin-top: 1em;
 }
 
-.add-review {
-  padding: 0 20%;
+@media (min-width: 992px) {
+  .add-review {
+    padding: 0 20%;
+  }
 }
 
 .reviews {
   font-weight: bold;
-  padding: 0 20%;
+}
+
+@media (min-width: 992px) {
+  .reviews {
+    padding: 0 20%;
+  }
 }
 
 .good-review {
