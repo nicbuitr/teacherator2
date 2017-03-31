@@ -1,10 +1,11 @@
 /* CSS declarations go here */
 * {
-  font-family: Roboto !important;
+  
 }
 
 body {  
-  background: black url(blackboard_bg.jpg) fixed round !important;
+  background: black url(/img/blackboard_bg.jpg) fixed round !important;
+  font-family: Roboto !important;
 }
 
 header {
@@ -28,12 +29,14 @@ hr{
 
 .teacher-list {
   padding: 0 1em;
+  word-break: break-all;
 }
 
 .teacher-list-element:hover {
   border-radius: 1em;
   border-style: groove;
   margin: 0 0 -0.786em 0;
+  cursor: pointer;
 }
 
 .teacher-list-element-selected {

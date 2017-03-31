@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import ReviewStars from './ReviewStars.jsx';
 
 export default class TeacherInfo extends Component {
     render(){
@@ -7,10 +8,10 @@ export default class TeacherInfo extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-4">
-                            <img src={this.props.teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" alt={'Teacher ' + this.props.teacher.name + ' profile image.'}/>
+                            <img src={'/img/'+this.props.teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" alt={'Teacher ' + this.props.teacher.name + ' profile image.'}/>
                             <h6><a className="caption" href={this.props.teacher.copyright}>{this.props.teacher.copyright} &copy; </a></h6>
                             <h2>{this.props.teacher.name}</h2>
-                            <img src={'/'+this.props.teacher.avg_review+'_star.png'} className="inline-img-responsive rating-stars-img " alt={this.props.teacher.avg_review + ' stars image for  ' + this.props.teacher.name + '  average rating.'}/>
+                            <ReviewStars teacher={this.props.teacher} section="teacher_profile" stars={this.props.teacher.avg_review} size="lg"/>
                             <hr/>
                             <h4>{this.props.teacher.occupation}</h4>
                         </div>

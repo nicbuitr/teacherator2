@@ -2,6 +2,7 @@ import { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Teachers } from '../api/teachers.js';
 import TeacherReviews from './TeacherReviews.jsx';
+import ReviewStars from './ReviewStars.jsx';
 import { Meteor } from 'meteor/meteor';
  
 // App component - represents the whole app
@@ -18,8 +19,16 @@ class App extends Component {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         document.documentElement.lang = 'en';
+    }
+
+    componentDidUpdate() {
+        //JQuery, el linter no sabe que $ es una función de jquery
+        var $input = $('input.rating');
+        if ($input.length) {
+            $input.removeClass('rating-loading').addClass('rating-loading').rating();
+        }
     }
 
     handleClick(event) {
@@ -63,9 +72,17 @@ class App extends Component {
         }
         else{
             return filteredTeachers.slice(0, this.state.maxTeachersToList).map((teacher) => (
-        <div key={'teacher_thumbnail_'+teacher._id} id={teacher._id} className="col-xs-4 teacher-list-element" onClick={this.handleClick.bind(this)} onKeyDown={this.handleKeyDown.bind(this)} tabIndex="0" aria-label={'Select teacher ' + teacher.name}>
-            <img key={'teacher_thumbnail_image_'+teacher._id} src={teacher.profile_pic_url} className="teacher-profile-img inline-img-responsive" alt={'Teacher ' + teacher.name + ' profile image thumbnail.'}/>
-            <img key={'teacher_thumbnail_stars_'+teacher._id} src={'/'+teacher.avg_review+'_star.png'} className="inline-img-responsive list-rating-stars-img" alt={teacher.avg_review + ' stars image for  ' + teacher.name + '  average rating.'}/>
+        <div key={'teacher_thumbnail_'+teacher._id} id={teacher._id} 
+                className="col-xs-4 teacher-list-element" 
+                onClick={this.handleClick.bind(this)} 
+                onKeyDown={this.handleKeyDown.bind(this)} tabIndex="0" 
+                aria-label={'Select teacher ' + teacher.name}>
+            <img key={'teacher_thumbnail_image_'+teacher._id} 
+                    src={'/img/'+teacher.profile_pic_url} 
+                    className="teacher-profile-img inline-img-responsive" 
+                    alt={'Teacher ' + teacher.name + ' profile image thumbnail.'}
+            />
+            <ReviewStars teacher={teacher} section="teacher_list" stars={teacher.avg_review} size='sm'/>
             <h5 key={'teacher_thumbnail_name_'+teacher._id}>{teacher.name}</h5>
         </div>
       ));

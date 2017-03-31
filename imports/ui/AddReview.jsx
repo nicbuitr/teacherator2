@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import ReviewStars from './ReviewStars.jsx';
 import { Meteor } from 'meteor/meteor';
 
 export default class Teacher extends Component {
@@ -46,13 +47,16 @@ export default class Teacher extends Component {
 
         //Reinitialize for a new review
         this.state.totalScore = 0;
-        document.getElementById('stars-img').src ='/0_star.png';
         for (var i = 1; i <= criterias.length; i++) {
             document.getElementById('criteria_'+i).checked = false;
             criterias[i-1].selection = 0;
         }         
         document.getElementById('comments').value = '';
         this.setState({comments: ''});
+        if (document.getElementById('form-stars-div').getElementsByClassName('filled-stars').length > 0){
+            let starsInput = document.getElementById('form-stars-div').getElementsByClassName('filled-stars')[0];
+            starsInput.style.width = this.state.totalScore*20 + '%';  
+        }
         window.location.replace('#reviews-div');
     }
 
@@ -77,9 +81,11 @@ export default class Teacher extends Component {
             criterias[name.split('_')[1]-1].selection = stateValue;
         }
 
-        let starsImage = document.getElementById('stars-img');
-        starsImage.src = '/' + this.state.totalScore + '_star.png';
-        starsImage.alt = this.state.totalScore + ' stars image for review to add.';
+        if (document.getElementById('form-stars-div').getElementsByClassName('filled-stars').length > 0){
+            let starsInput = document.getElementById('form-stars-div').getElementsByClassName('filled-stars')[0];
+            starsInput.style.width = this.state.totalScore*20 + '%';  
+        }
+        
         this.setState(state);
     }
 
@@ -114,8 +120,8 @@ export default class Teacher extends Component {
                   <textarea className='form-control' rows='5' id='comments' name='comments' value={this.state.comments} onChange={this.handleInputChange.bind(this)} placeholder='Write here any suggestion, compliment, rant or comment you may have...'></textarea>                    
                 </div>
                 <hr/>
-                  <div className='text-center'>
-                    <img src='/0_star.png' className='inline-img-responsive rating-stars-img ' id='stars-img' name='stars-img' alt={'0 stars image for review to add.'}/>
+                  <div id="form-stars-div" className='text-center'>
+                    <ReviewStars teacher={this.props.teacher} section="add_review" size='lg' stars={this.state.totalScore}/>
                   </div>
                 <hr/>
                 <div className='form-group text-center'>
